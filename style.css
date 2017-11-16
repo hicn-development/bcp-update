@@ -339,7 +339,7 @@ html {
 }
 
 body {
-	background: #fff;
+	background: #eaeaea;
 	/* Fallback for when there is no custom background color defined. */
 }
 
@@ -862,4 +862,77 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0px;
     padding: 0px;
     vertical-align: baseline;
+}
+div#page {
+	min-width: 320px;
+	height: 100%;
+}
+footer#colophon {
+	background: #fff;
+    width: 100%;
+    position: relative;
+}
+footer#colophon, footer#colophon a {
+	color: #777;
+}
+.container_first {
+	padding: 0 20px;
+}
+.container_second {
+	min-width: 320px;
+	max-width: 1380px;
+    width: 100%;
+    margin: 0 auto;
+}
+#on_page_first {
+	padding-bottom: 60px;
+}
+#on_page_second {
+	background: #fff;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+#content {
+	overflow: hidden;
+	position: relative;
+	background-color: #fff !important;
+	background: url('img/s-right-s1.png') right 0 repeat-y;
+}
+.main-inner {
+	min-height: 600px;
+	/*background: url('img/s-right-s1.png') right 0 repeat-y;*/
+    padding-right: 340px;
+}
+#primary {
+	float: left;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+    -moz-transition: -moz-transform,.35s ease;
+    -webkit-transition: -webkit-transform,.35s ease;
+    -o-transition: -o-transform,.35s ease;
+    transition: transform,.35s ease;
+}
+#main {
+	padding: 30px 30px 20px;
+}
+.widget-area {
+	position: relative;
+	padding-bottom: 20px;
+    z-index: 2;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -moz-transition: height .4s ease-in-out;
+    -webkit-transition: height .4s ease-in-out;
+    -o-transition: height .4s ease-in-out;
+    transition: height .4s ease-in-out;
+}
+aside#secondary {
+	float: right;
+    margin-right: -340px;
+	width: 340px;
+    z-index: 2;
 }

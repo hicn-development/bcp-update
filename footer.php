@@ -10,8 +10,10 @@
  */
 
 ?>
-
+</div><!-- .main-inner -->
 	</div><!-- #content -->
+</div><!-- #on_page_first -->
+</div><!-- #on_page_second -->
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
