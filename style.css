@@ -1,6 +1,6 @@
 /*!
 Theme Name: BCP_BLOG
-Theme URI: http://underscores.me/
+Theme URI: http://habibimroncn.github.io
 Author: habibimroncn
 Author URI: http://habibimroncn.github.io
 Description: Theme update for Bacapikiran
@@ -8,7 +8,7 @@ Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: bcp
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: bcp, bacapikiran, theme, wordpress
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -44,8 +44,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 html {
-	font-family: sans-serif;
+	font-family: 'Raleway', sans-serif;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 }
@@ -265,7 +266,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: sans-serif;
+	font-family: 'Raleway', sans-serif;
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -850,4 +851,15 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/* Override default */
+h1, h2, h3, h4, h4, h5, h6 {
+    margin-bottom: 25px;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: baseline;
 }
