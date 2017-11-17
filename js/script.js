@@ -2,11 +2,15 @@
 	"use strict";
 
 	$(function () {
-
+		
 	});
 
 	$(document).ready(function( $ ){
-		console.log("fire");
+		$('.post-row').masonry({
+		  	itemSelector: '.grid-item',
+		  	columnWidth: '.grid-item',
+  			percentPosition: true
+		});
 	});
 
 }(jQuery));

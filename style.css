@@ -854,6 +854,9 @@ object {
 }
 
 /* Override default */
+.group {
+    zoom: 1;
+}
 h1, h2, h3, h4, h4, h5, h6 {
     margin-bottom: 25px;
 }
@@ -935,4 +938,107 @@ aside#secondary {
     margin-right: -340px;
 	width: 340px;
     z-index: 2;
+}
+.post-list {
+    margin-right: -30px;
+}
+.post-list .post-row {
+    margin-left: -13px;
+    padding-left: 30px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+    position: relative;
+}
+#grid-wrapper .post-row {
+    overflow: hidden;
+}
+.post-list .grid-item, .post-list .page, .post-list .post {
+    width: 32.3%;
+    float: left;
+}
+.post-list .post-inner {
+    margin-right: 30px;
+}
+.post-byline {
+	display: none;
+	font-size: .875em;
+    font-weight: 400;
+    color: #aaa;
+    margin-bottom: 1em;
+}
+div.post-inner.post-hover {
+	overflow: hidden;
+    -webkit-animation-duration: 0.8s;
+    -moz-animation-duration: 0.8s;
+    -o-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+.post-thumbnail {
+    width: 100%;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    transition: all 1s ease;
+    position: relative;
+    margin-bottom: 1em;
+}
+.page-title, .post-byline, .post-meta, .post-nav li a strong, .sharrre-container span {
+    text-transform: uppercase;
+}
+.post-meta {
+    font-size: .875em;
+    font-weight: 400;
+    color: #bbb;
+    margin-bottom: .3em;
+}
+.post-hover, .post-hover .post-thumbnail {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+.post-meta .post-category {
+    float: left;
+    margin-right: 6px;
+}
+.post-meta .post-date {
+    float: left;
+}
+.post-title {
+    color: #444;
+    margin-bottom: 10px;
+    font-size: 1.375em;
+    font-weight: 400;
+    line-height: 1.5em;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+.post-title a {
+    color: #444;
+}
+.entry {
+    font-size: 1.125em;
+    line-height: 1.6em;
+}
+.entry.excerpt {
+    font-size: 1em;
+    color: #aaa;
+}
+.entry.excerpt p {
+    margin-bottom: 0;
 }

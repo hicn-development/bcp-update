@@ -6,49 +6,51 @@
  *
  * @package BCP_BLOG
  */
-
+global $index;
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
-
-		if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php bcp_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php
-		endif; ?>
-	</header><!-- .entry-header -->
-
-	<div class="entry-content">
-		<?php
-			the_content( sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'bcp' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			) );
-
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bcp' ),
-				'after'  => '</div>',
-			) );
+<article id="post-<?php the_ID(); ?>" <?php post_class('group grid-item'); ?>>
+	<div class="post-inner post-hover" data-collection-index="<?php echo $index; ?>">
+		<div class="post-thumbnail">
+			<a href="<?php echo esc_url(get_permalink());?>" rel="bookmark" >
+				<?php
+					if ( has_post_thumbnail() ) {
+						the_post_thumbnail('medium');
+					} else {
+						echo '<img src="'.bcp_get_thumbnail_default().'" class="thumbnail_default img-responsive" />';
+					}
+				?>
+			</a>
+		</div>
+		<div class="post-meta group">
+			<p class="post-category">
+				<?php 
+				$categories = get_the_category();
+				foreach($categories as $category){
+				   $cat_link = get_category_link($category->cat_ID);
+				   echo '<a href="'.$cat_link.'">'.$category->name.'</a>'.',&nbsp;';
+				}
+				?>
+			</p>
+			<p class="post-date">
+				<?php bcp_custom_posted_on(); ?>
+			</p>
+			<p class="post-byline">
+				<?php bcp_posted_on(); ?>
+			</p>
+		
+		</div>
+		<?php 
+			the_title( '<h2 class="entry-title post-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		?>
-	</div><!-- .entry-content -->
+		<div class="entry-excerpt entry-summary">
+		<?php
+			the_excerpt(); 
+		?>
+		</div>
+	</div><!-- .post-inner.post-hover -->
 
-	<footer class="entry-footer">
-		<?php bcp_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	<!-- <footer class="entry-footer"> -->
+		<?php //bcp_entry_footer(); ?>
+	<!--</footer> --><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

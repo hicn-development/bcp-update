@@ -12,13 +12,18 @@
  * @package BCP_BLOG
  */
 
-get_header(); ?>
+get_header(); 
+global $index;
+?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
+			<div id="grid-wrapper" class="post-list">
+				<div class="post-row">
 
 		<?php
 		if ( have_posts() ) :
+			$index = 0;
 
 			if ( is_home() && ! is_front_page() ) : ?>
 				<header>
@@ -37,7 +42,7 @@ get_header(); ?>
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
 				get_template_part( 'template-parts/content', get_post_format() );
-
+				$index++;
 			endwhile;
 
 			the_posts_navigation();
@@ -47,7 +52,8 @@ get_header(); ?>
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
-
+				</div><!-- .post-row -->
+			</div><!-- #grid-wrapper -->
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
