@@ -45,6 +45,7 @@ if ( ! function_exists( 'bcp_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'bcp' ),
+			'menu-2' => esc_html__( 'Footer', 'bcp' ),
 		) );
 
 		/*
@@ -105,11 +106,42 @@ function bcp_widgets_init() {
 		'name'          => esc_html__( 'Sidebar', 'bcp' ),
 		'id'            => 'sidebar-1',
 		'description'   => esc_html__( 'Add widgets here.', 'bcp' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
 	) );
+	// Footer widget 1
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer widget 1', 'bcp' ),
+		'id'            => 'sidebar-footer-widget-1',
+		'description'   => esc_html__( 'Add widgets here.', 'bcp' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	// Footer widget 2
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer widget 2', 'bcp' ),
+		'id'            => 'sidebar-footer-widget-2',
+		'description'   => esc_html__( 'Add widgets here.', 'bcp' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	// Footer widget 3
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer widget 3', 'bcp' ),
+		'id'            => 'sidebar-footer-widget-3',
+		'description'   => esc_html__( 'Add widgets here.', 'bcp' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+
 }
 add_action( 'widgets_init', 'bcp_widgets_init' );
 
@@ -117,12 +149,54 @@ function bcp_get_thumbnail_default(){
 	return get_template_directory_uri().'/img/default.png';
 }
 
+class Bcp_Walker_Nav_Menu extends Walker_Nav_Menu {
+    var $tree_type = array( 'post_type', 'taxonomy', 'custom' );
+    var $db_fields = array( 'parent' => 'menu_item_parent', 'id' => 'db_id' );
+    function start_lvl(&$output, $depth = 0, $args = array()) {
+        $indent = str_repeat("\t", $depth+1);
+        $output .= "\t\n$indent\t<ul id=\"menu-footer-menu\" class=\"nav container group\">\n";
+    }
+    function end_lvl(&$output, $depth = 0, $args = array()) {
+        $indent = str_repeat("\t", $depth+1);
+        $output .= "$indent\t</ul>\n";
+    }
+    function start_el(&$output, $object, $depth = 0, $args = array(), $current_object_id = 0) {
+        global $wp_query;
+        $indent = ( $depth ) ? str_repeat( "\t", $depth+1 ) : '';
+        $class_names = $value = '';
+        $classes = empty( $object->classes ) ? array() : (array) $object->classes;
+        $classes = in_array( 'current-menu-item', $classes ) ? array( 'current-menu-item' ) : $classes;
+        $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $object, $args ) );
+
+        $class_names = strlen( trim( $class_names ) ) > 0 ? ' class="' . esc_attr( $class_names ) . '"' : '';
+        $id = apply_filters( 'nav_menu_item_id', '', $object, $args );
+        $id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
+        $output .= "\n$indent\t" .'<li' . $id . $value . $class_names .'>'."\n\t$indent\t";
+        $attributes  = ! empty( $object->attr_title ) ? ' title="'  . esc_attr( $object->attr_title ) .'"' : '';
+        $attributes .= ! empty( $object->target )     ? ' target="' . esc_attr( $object->target     ) .'"' : '';
+        $attributes .= ! empty( $object->xfn )        ? ' rel="'    . esc_attr( $object->xfn        ) .'"' : '';
+        $attributes .= ! empty( $object->url )        ? ' href="'   . esc_attr( $object->url        ) .'"' : '';
+        if(isset($args->before)):
+        $object_output = $args->before;
+        $object_output .= '<a'. $attributes .'>';
+        $object_output .= $args->link_before . apply_filters( 'the_title', $object->title, $object->ID ) . $args->link_after;
+
+        $object_output .= "</a>\n$indent\t";
+        $object_output .= $args->after;
+        $output .= apply_filters( 'walker_nav_menu_start_el', $object_output, $object, $depth, $args );
+        endif;
+    }
+    function end_el(&$output, $object, $depth = 0, $args = array()) {
+        $output .= "</li>\n";
+    }
+}
+
 /**
  * Enqueue scripts and styles.
  */
 function bcp_scripts() {
 
-	wp_enqueue_style( 'bcp-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
+	// wp_enqueue_style( 'bcp-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
 
 	wp_enqueue_style( 'bcp-font-awesome', get_template_directory_uri() . '/font_awesome/css/font-awesome.min.css' );
 
@@ -133,7 +207,7 @@ function bcp_scripts() {
 
 	wp_enqueue_script( 'bcp-popper-script', '//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js', array(), '4.0.0', true );
 
-	wp_enqueue_script( 'bcp-bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.0.0', true );
+	// wp_enqueue_script( 'bcp-bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.0.0', true );
 
 	wp_enqueue_script( 'bcp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 

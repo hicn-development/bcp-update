@@ -5,7 +5,7 @@
 		canBeMorePage = true,
 	    bottomOffset = 1000;
 	function MasonryStart(){
-		var msnry = new Masonry('.post-row', {
+		var msnry = new Masonry('#grid-wrapper', {
 			itemSelector: '.grid-item',
 	  		columnWidth: '.grid-item',
 			percentPosition: true,

@@ -55,4 +55,4 @@
 <div id="on_page_first" class="container_first">
 	<div id="on_page_second" class="container_second">
 	<div id="content" class="site-content">
-		<div class="main-inner">
+		<div class="main-inner group">

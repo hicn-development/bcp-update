@@ -17,9 +17,9 @@ global $index;
 ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-			<div id="grid-wrapper" class="post-list">
-				<div class="post-row">
+		<main id="main" class="site-main group">
+			<div id="grid-wrapper" class="post-list group">
+				<!-- <div class="post-row"> -->
 
 		<?php
 		if ( have_posts() ) :
@@ -44,7 +44,7 @@ global $index;
 				get_template_part( 'template-parts/content', get_post_format() );
 				$index++;
 			endwhile;
-			echo '</div><!-- .post-row -->';
+			echo '<!-- </div> --><!-- .post-row -->';
 			// the_posts_navigation();
 
 		else :

@@ -15,7 +15,7 @@ global $index;
 			<a href="<?php echo esc_url(get_permalink());?>" title="<?php echo get_the_title(); ?>" rel="bookmark" >
 				<?php
 					if ( has_post_thumbnail() ) {
-						the_post_thumbnail('medium');
+						the_post_thumbnail('large');
 					} else {
 						echo '<img src="'.bcp_get_thumbnail_default().'" class="thumbnail_default img-responsive" />';
 					}
