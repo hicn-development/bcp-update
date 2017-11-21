@@ -44,15 +44,14 @@ global $index;
 				get_template_part( 'template-parts/content', get_post_format() );
 				$index++;
 			endwhile;
-
-			the_posts_navigation();
+			echo '</div><!-- .post-row -->';
+			// the_posts_navigation();
 
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
-				</div><!-- .post-row -->
 			</div><!-- #grid-wrapper -->
 		</main><!-- #main -->
 	</div><!-- #primary -->
