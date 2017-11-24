@@ -49,7 +49,7 @@
                     wp_nav_menu( array(
                         'menu'              => 'Header Nav',
                         'theme_location'    => 'menu-2',
-                        'depth'             => 4,
+                        'depth'             => 2,
                         'container'         => false,
                         'menu_class'        => 'nav container group',
                         'walker'            => new Bcp_Walker_Nav_Menu())
