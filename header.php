@@ -25,32 +25,49 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'bcp' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
 
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
+		<!-- Custom Code -->
+		<div class="container group">
+			<div class="container-inner">
+				<div class="group pad central-header-zone">
+					<div class="logo-tagline-group">
+						<p class="site-title">
+							<a class="custom-logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>">
+								<?php 
+									if(get_header_image() !== ''){
+								?>
+								<img src="<?php echo get_header_image(); ?>" alt="<?php bloginfo( 'name' ); ?>">
+								<?php
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'bcp' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
+									} else {
+										bloginfo( 'name' ); 
+									}
+								?>			
+							</a>
+						</p>
+						<p class="site-description">
+							<?php echo bloginfo( 'name' ); ?> | <?php echo get_bloginfo( 'description', 'display' ); ?>
+						</p>
+					</div>
+				</div>
+				<nav class="nav-container group desktop-menu" id="nav-header">
+					<nav class="nav-text"></nav>
+				<div class="nav-wrap container">
+					<?php
+	                    wp_nav_menu( array(
+	                        'menu'              => 'Nav Header',
+	                        'theme_location'    => 'menu-3',
+	                        'depth'             => 2,
+	                        'container'         => false,
+	                        'menu_class'        => 'nav container-inner group',
+	                        'walker'            => new Bcp_Walker_Nav_Menu())
+	                    );
+	                ?>
+				</div>
+			</nav>
+			</div>
+		</div>
+		<!-- EOF Custom Code -->
 	</header><!-- #masthead -->
 <div id="on_page_first" class="container_first">
 	<div id="on_page_second" class="container_second">

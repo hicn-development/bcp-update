@@ -46,6 +46,7 @@ if ( ! function_exists( 'bcp_setup' ) ) :
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'bcp' ),
 			'menu-2' => esc_html__( 'Footer', 'bcp' ),
+			'menu-3' => esc_html__( 'Primary Header', 'bcp' ),
 		) );
 
 		/*
@@ -154,7 +155,7 @@ class Bcp_Walker_Nav_Menu extends Walker_Nav_Menu {
     var $db_fields = array( 'parent' => 'menu_item_parent', 'id' => 'db_id' );
     function start_lvl(&$output, $depth = 0, $args = array()) {
         $indent = str_repeat("\t", $depth+1);
-        $output .= "\t\n$indent\t<ul id=\"menu-footer-menu\" class=\"nav container group\">\n";
+        $output .= "\t\n$indent\t<ul id=\"this-on-sub-menu\" class=\"sub-menu\">\n";
     }
     function end_lvl(&$output, $depth = 0, $args = array()) {
         $indent = str_repeat("\t", $depth+1);
